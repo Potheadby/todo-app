@@ -101,7 +101,7 @@ module.exports = function (grunt) {
     concat: {
       scripts: {
         src: [
-
+          '<%= path.components %>/underscore/underscore.js',
           // Angular
           '<%= path.components %>/angular/angular.js',
           '<%= path.components %>/angular-route/angular-route.js',
@@ -160,7 +160,6 @@ module.exports = function (grunt) {
   grunt.registerTask('build:dev', [
     'clean',
     'concat',
-    'copy',
     'jade:dev',
     'stylus:dev'
   ]);
@@ -170,7 +169,6 @@ module.exports = function (grunt) {
     'concat',
     'ngmin',
     'uglify',
-    'copy',
     'jade:prod',
     'stylus:prod'
   ]);

@@ -1,0 +1,20 @@
+{
+  "name": "mashape-todo-app",
+  "version": "0.0.1",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.2.13",
+    "angular-route": "1.2.13",
+    "restangular": "~1.4.0",
+    "underscore": "~1.6.0"
+  }
+}
