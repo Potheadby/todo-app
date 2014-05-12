@@ -1,0 +1,35 @@
+{
+  "name": "mashape-todo-app",
+  "title": "Mashape Todo App",
+  "version": "0.0.1",
+  "private": true,
+  "author": {
+    "name": "Vazha Omanashvili",
+    "email": "rainum.ua@gmail.com",
+    "url": "http://rainum.me"
+  },
+  "scripts": {
+    "start": "nodemon ./server.js",
+    "postinstall": "bower install"
+  },
+  "dependencies": {
+    "express": "~3.6.0",
+    "mongoose": "~3.8.9",
+    "twilio": "~1.6.0"
+  },
+  "devDependencies": {
+    "bower": "*",
+    "grunt": "~0.4.2",
+    "load-grunt-tasks": "*",
+    "time-grunt": "*",
+    "grunt-contrib-stylus": "*",
+    "autoprefixer-stylus": "*",
+    "csso-stylus": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-jade": "*",
+    "grunt-ngmin": "*"
+  }
+}
