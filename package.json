@@ -15,7 +15,8 @@
   "dependencies": {
     "express": "~3.6.0",
     "mongoose": "~3.8.9",
-    "twilio": "~1.6.0"
+    "twilio": "~1.6.0",
+    "mongoose-paginate": "~2.2.0"
   },
   "devDependencies": {
     "bower": "*",
