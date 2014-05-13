@@ -1,4 +1,129 @@
 @import "normalize.css/normalize.css"
 
+html
 body
-  font: 12px Helvetica, Arial, sans-serif;
+  height 100%
+  background #fff
+
+body
+  font 16px / 1.4 Helvetica, Arial, sans-serif
+  background-color: #269;
+  background-image: linear-gradient(rgba(#fff, .3) 1px, transparent 1px), linear-gradient(90deg, rgba(#fff, .3) 1px, transparent 1px), linear-gradient(rgba(#fff, .1) 1px, transparent 1px), linear-gradient(90deg, rgba(#fff, .1) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+
+*
+*:focus
+  outline 0 none
+
+button
+  background: transparent
+  border: 0 none
+  padding: 0
+  margin: 0
+
+.todo-app
+  position relative
+  margin 0 auto
+  width 40%
+  box-shadow: 0 2px 6px 0 rgba(#000, .2), 0 25px 50px 0 rgba(#000, .15);
+
+  &:before
+    content: '';
+    border-left: 1px solid #f5d6d6;
+    border-right: 1px solid #f5d6d6;
+    width: 2px;
+    position: absolute;
+    top: 0;
+    left: 40px;
+    height: 100%;
+
+
+.app-header
+.app-content
+  position relative
+  z-index: 2
+
+.todo-list
+  list-style none;
+  margin 0 auto
+  padding 0
+  background #f7f7f7
+
+  li
+    border-bottom 1px dotted #ccc
+    padding: 10px
+
+    &:last-child
+      border 0 none
+
+.todo-list-item
+  position: relative
+
+  .todo-toggle
+    margin: 10px
+  form
+    display none
+
+  &.editing
+    label
+      display none
+
+    form
+      display inline-block
+
+  &:hover
+    .todo-destroy
+      display block
+
+.todo-destroy
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  margin: auto 0;
+  font-size: 22px;
+  color: #a88a8a;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+
+  &:after
+    content: '✖';
+
+  &:hover
+    text-shadow: 0 0 1px #000, 0 0 10px rgba(199, 107, 107, 0.8)
+    transform: scale(1.3)
+
+
+.app-footer
+  color: #777;
+  padding: 0 15px;
+  position: absolute;
+  right: 0;
+  bottom: -31px;
+  left: 0;
+  height: 20px;
+  z-index: 1;
+  text-align: center;
+
+  &:before
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 31px;
+    left: 0;
+    height: 50px;
+    z-index: -1;
+    box-shadow: 0 1px 1px rgba(#000, 0.3),
+
+                0 6px 0 -2px rgba(#fff, 0.8),
+                0 7px 1px -2px rgba(#000, 0.3),
+
+                0 12px 0 -4px rgba(#fff, 0.8),
+                0 13px 1px -4px rgba(#000, 0.3),
+
+                0 16px 0 -6px rgba(#fff, 0.8),
+                0 17px 1px -6px rgba(#000, 0.3);

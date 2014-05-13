@@ -3,28 +3,34 @@
 angular.module('Mashape-Todo').controller('AppCtrl', function ($scope, Restangular) {
   var todos = Restangular.all('todo');
 
-  $scope.newTodo = {};
+  $scope.newTodo = '';
+  $scope.editedTodo = null;
   $scope.todos = todos.getList().$object;
 
   $scope.addTodo = function () {
-    var newTodo = $scope.newTodo;
+    if (!$scope.newTodo.length) return;
 
-    for (var field in newTodo) {
-      if (newTodo.hasOwnProperty(field)) {
-        newTodo[field] = newTodo[field].trim();
-      }
-    }
-
-    if (!newTodo.title.length) return;
-
-    todos.post(newTodo).then(function (todo) {
-      $scope.newTodo = {};
+    todos.post({ text: $scope.newTodo }).then(function (todo) {
+      $scope.newTodo = '';
       $scope.todos.push(todo)
     });
   };
 
+  $scope.doneEditing = function (todo) {
+    if (todo.markDeleted) return;
+
+    $scope.editedTodo = null;
+
+    if (!todo.text) {
+      todo.markDeleted = true;
+      $scope.destroyTodo(todo);
+    } else {
+      todo.save();
+    }
+  };
+
   $scope.editTodo = function (todo) {
-    todo.save();
+    $scope.editedTodo = todo;
   };
 
   $scope.destroyTodo = function (todo) {
@@ -32,4 +38,10 @@ angular.module('Mashape-Todo').controller('AppCtrl', function ($scope, Restangul
       $scope.todos.splice($scope.todos.indexOf(todo), 1);
     });
   };
+
+  $scope.doSearch = function () {
+    if ($scope.query) {
+      $scope.todos = todos.getList({q: $scope.query}).$object;
+    }
+  }
 });

@@ -143,8 +143,8 @@ module.exports = function (grunt) {
         tasks: 'concat'
       },
       stylus: {
-        files: '<%= path.assets %>/stylesheets/{,**/}*.{scss,sass}',
-        tasks: ['stylus:dev', 'autoprefixer']
+        files: '<%= path.assets %>/stylesheets/{,**/}*.styl',
+        tasks: ['stylus:dev']
       },
       jade: {
         files: '<%= path.assets %>/views/{,**/}*.jade',
