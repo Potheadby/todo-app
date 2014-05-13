@@ -1,21 +1,40 @@
 .todo-app
   header.app-header
-    form(ng-submit='doSearch()')
-      input(type='search', ng-model='query')
-
-    form(ng-submit='addTodo()')
-      input(type='text', ng-model='newTodo', placeholder='What needs to be done?', autofocus)
-      button +
+    h1 Mashape Todo App
+    .search-block
+      input(type='search', name='s', ng-model='query', results="5")
 
   section.app-content
     ul.todo-list
-      li.todo-list-item(ng-repeat='todo in todos | orderBy:"-created"', ng-class='{ done: todo.done, editing: todo == editedTodo }')
-        input.todo-toggle(type='checkbox', ng-model='todo.done', ng-change='doneEditing(todo)')
-        label(ng-dblclick='editTodo(todo)') {{ todo.text }}
+      li.todo-list-item
+        form(ng-submit='addTodo()')
+          input(type='text', ng-model='newTodo', placeholder='Write new todo and press enter key', autofocus)
+      li.todo-list-item(ng-repeat='todo in todos | orderBy:"-created"', ng-class='{ done: todo.done, editing: todo == editedTodo }', ng-click='editTodo(todo)')
+        .todo-toggle
+          input(type='checkbox', ng-model='todo.done', ng-change='doneEditing(todo)')
+        .todo-text {{ todo.text }}
 
-        form(ng-submit='doneEditing(todo)')
-          input(ng-model='todo.text', ng-change='editTodo(todo)', ng-trim='true', ng-blur='doneEditing(todo)', todo-focus="todo == editedTodo")
+        form.todo-editor(ng-submit='doneEditing(todo)')
+          input(type='text', ng-model='todo.text', ng-change='editTodo(todo)', ng-trim='true', ng-blur='doneEditing(todo)', todo-focus="todo == editedTodo")
 
         button.todo-destroy(ng-click='destroyTodo(todo)')
+      //li
+      //
+      //  a(href='#' ng-click='goPrevPage()') <
+      //  | -----------------------
+      //  a(href='#' ng-click='goNextPage()') >
+      //
+      //  div(ui-pagination, cur='1', total='todos.total', display='9')
+
 
   footer.app-footer 123
+
+.credits
+  p Click to edit a todo
+  p
+    | Test task for
+    =' '
+    a(href='http://www.mashape.com') Mashape
+    | . Author:
+    =' '
+    a(href='http://rainum.me') Vazha Omanashvili
