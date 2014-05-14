@@ -18,10 +18,10 @@
           input(type='text', ng-model='todo.text', ng-change='editTodo(todo)', ng-trim='true', ng-blur='doneEditing(todo)', todo-focus="todo == editedTodo")
 
         button.todo-destroy(ng-click='destroyTodo(todo)')
-      li.todo-list-item(ng-show='todos.length && todos.total > 1')
-        a(href='#' ng-click='changePage(-1)', ng-hide='page == 1') &#10094;
-        | page {{ page }} of {{ todos.total }}
-        a(href='#' ng-click='changePage(1)', ng-hide='page == todos.total') &#10095;
+      li.todo-list-item.todo-pagination(ng-show='todos.length && todos.total > 1')
+        a.prev(href='#' ng-click='changePage(-1)', ng-hide='page == 1') &#10094;
+        a.next(href='#' ng-click='changePage(1)', ng-hide='page == todos.total') &#10095;
+        .page-count page {{ page }} of {{ todos.total }}
 
   footer.app-footer 123
 
