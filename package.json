@@ -8,6 +8,9 @@
     "email": "rainum.ua@gmail.com",
     "url": "http://rainum.me"
   },
+  "engines": {
+    "node": "0.10.x"
+  },
   "scripts": {
     "start": "nodemon ./server.js",
     "postinstall": "bower install"
