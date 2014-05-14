@@ -15,7 +15,7 @@ angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout
         return elem;
       })
       .addResponseInterceptor(function (data) {
-        ngProgress.stop();
+        ngProgress.complete();
 
         return data;
       });
