@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "node ./server.js",
-    "postinstall": "./node_modules/.bin/bower install; ./node_modules/.bin/grunt heroku"
+    "postinstall": "./node_modules/.bin/bower install && grunt heroku"
   },
   "dependencies": {
     "express": "~3.6.0",
