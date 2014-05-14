@@ -3,7 +3,7 @@
 var app = angular.module('Mashape-Todo', [
   'ngRoute',
   'restangular',
-  'ngProgress'
+  'ngProgressLite'
 ]);
 
 app.config(function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider) {

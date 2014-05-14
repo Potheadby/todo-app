@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout, $routeParams, Restangular, ngProgress) {
+angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout, $routeParams, Restangular, ngProgressLite) {
   /**
    * Set http header with mobile phone from URL
    */
@@ -8,14 +8,12 @@ angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout
   Restangular
       .setDefaultHeaders({ 'x-phone': $routeParams.phone })
       .addRequestInterceptor(function (elem) {
-        ngProgress.height('5px');
-        ngProgress.color('rgb(226, 219, 60)');
-        ngProgress.start();
+        ngProgressLite.start();
 
         return elem;
       })
       .addResponseInterceptor(function (data) {
-        ngProgress.complete();
+        ngProgressLite.done();
 
         return data;
       });
