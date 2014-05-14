@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Mashape-Todo').controller('AppCtrl', function ($scope, $timeout, $routeParams, Restangular) {
+angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout, $routeParams, Restangular) {
   /**
    * Set http header with mobile phone from URL
    */

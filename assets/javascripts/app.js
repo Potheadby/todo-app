@@ -31,8 +31,8 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider, Restangul
 
   $routeProvider
       .when('/:phone?', {
-        templateUrl: '/app.html',
-        controller: 'AppCtrl'
+        templateUrl: '/todo.html',
+        controller: 'TodoCtrl'
       })
       .otherwise({
         redirectTo: '/'
