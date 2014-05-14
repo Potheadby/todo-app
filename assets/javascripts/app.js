@@ -6,6 +6,10 @@ var app = angular.module('Mashape-Todo', [
 ]);
 
 app.config(function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider) {
+  /**
+   * Restangular initial config
+   */
+
   RestangularProvider
       .setBaseUrl('/api/v1')
       .setRestangularFields({ id: '_id' })
