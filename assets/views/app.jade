@@ -9,28 +9,24 @@
       li.todo-list-item
         form(ng-submit='addTodo()')
           input(type='text', ng-model='newTodo', placeholder='Write new todo and press enter key', autofocus)
-      li.todo-list-item(ng-repeat='todo in todos | orderBy:"-created"', ng-class='{ done: todo.done, editing: todo == editedTodo }', ng-click='editTodo(todo)')
+      li.todo-list-item(ng-repeat='todo in todos | orderBy:"-created"', ng-class='{ done: todo.done, editing: todo == editedTodo }')
         .todo-toggle
-          input(type='checkbox', ng-model='todo.done', ng-change='doneEditing(todo)')
-        .todo-text {{ todo.text }}
+          input(type='checkbox', ng-model='todo.done', ng-change='todo.save()')
+        .todo-text(ng-dblclick='editTodo(todo)') {{ todo.text }}
 
         form.todo-editor(ng-submit='doneEditing(todo)')
           input(type='text', ng-model='todo.text', ng-change='editTodo(todo)', ng-trim='true', ng-blur='doneEditing(todo)', todo-focus="todo == editedTodo")
 
         button.todo-destroy(ng-click='destroyTodo(todo)')
-      //li
-      //
-      //  a(href='#' ng-click='goPrevPage()') <
-      //  | -----------------------
-      //  a(href='#' ng-click='goNextPage()') >
-      //
-      //  div(ui-pagination, cur='1', total='todos.total', display='9')
-
+      li.todo-list-item(ng-show='todos.length && todos.total > 1')
+        a(href='#' ng-click='changePage(-1)', ng-hide='page == 1') &#10094;
+        | page {{ page }} of {{ todos.total }}
+        a(href='#' ng-click='changePage(1)', ng-hide='page == todos.total') &#10095;
 
   footer.app-footer 123
 
 .credits
-  p Click to edit a todo
+  p Double click to edit a todo
   p
     | Test task for
     =' '
