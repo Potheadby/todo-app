@@ -26,7 +26,7 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider, Restangul
   $locationProvider.html5Mode(true);
 
   $routeProvider
-      .when('/:id?', {
+      .when('/:phone?', {
         templateUrl: '/app.html',
         controller: 'AppCtrl'
       })

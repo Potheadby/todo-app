@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('Mashape-Todo').controller('AppCtrl', function ($scope, $timeout, Restangular) {
+angular.module('Mashape-Todo').controller('AppCtrl', function ($scope, $timeout, $routeParams, Restangular) {
+  Restangular.setDefaultHeaders({ 'x-phone': $routeParams.phone });
+
   var todos = Restangular.all('todo');
 
   $scope.page = 1;
