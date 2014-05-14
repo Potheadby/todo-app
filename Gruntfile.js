@@ -153,9 +153,7 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('default', [
-    'build:prod'
-  ]);
+  grunt.registerTask('heroku', [ 'build:prod' ]);
 
   grunt.registerTask('build:dev', [
     'clean',
