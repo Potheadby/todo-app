@@ -154,7 +154,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('default', [
-    'build:dev',
+    'build:prod'
   ]);
 
   grunt.registerTask('build:dev', [
