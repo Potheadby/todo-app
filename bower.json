@@ -16,6 +16,7 @@
     "angular": "1.2.13",
     "angular-route": "1.2.13",
     "restangular": "~1.4.0",
-    "underscore": "~1.6.0"
+    "underscore": "~1.6.0",
+    "ngprogress": "~1.0.4"
   }
 }

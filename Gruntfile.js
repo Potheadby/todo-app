@@ -102,10 +102,12 @@ module.exports = function (grunt) {
       scripts: {
         src: [
           '<%= path.components %>/underscore/underscore.js',
+
           // Angular
           '<%= path.components %>/angular/angular.js',
           '<%= path.components %>/angular-route/angular-route.js',
           '<%= path.components %>/restangular/dist/restangular.js',
+          '<%= path.components %>/ngprogress/build/ngProgress.js',
 
           // App
           '<%= path.assets %>/javascripts/**/*.js'
@@ -152,6 +154,8 @@ module.exports = function (grunt) {
       }
     }
   });
+
+  grunt.registerTask('default', [ 'build:prod' ]);
 
   grunt.registerTask('heroku', [ 'build:prod' ]);
 

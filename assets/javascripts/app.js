@@ -2,7 +2,8 @@
 
 var app = angular.module('Mashape-Todo', [
   'ngRoute',
-  'restangular'
+  'restangular',
+  'ngProgress'
 ]);
 
 app.config(function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider) {

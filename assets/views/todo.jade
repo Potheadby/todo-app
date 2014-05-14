@@ -17,7 +17,7 @@
         form.todo-editor(ng-submit='doneEditing(todo)')
           input(type='text', ng-model='todo.text', ng-change='editTodo(todo)', ng-trim='true', ng-blur='doneEditing(todo)', todo-focus="todo == editedTodo")
 
-        button.todo-destroy(ng-click='destroyTodo(todo)')
+        button.todo-destroy(ng-click='destroyTodo(todo)') &times;
       li.todo-list-item.todo-pagination(ng-show='todos.length && todos.total > 1')
         button.prev(href='#' ng-click='changePage(-1)', ng-hide='page == 1') &#10094;
         button.next(href='#' ng-click='changePage(1)', ng-hide='page == todos.total') &#10095;
