@@ -5,11 +5,19 @@ html(lang='en')
     meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
     meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
     title Mashape Todo App
-    meta(name='description', content='')
-    meta(name='viewport', content='width=device-width')
     link(rel='stylesheet', href='/css/styles.css')
   body(ng-app='Mashape-Todo')
     .container(ng-view)
+
+    .credits
+      p Double click or tap once to edit a todo
+      p
+        | Test task for
+        =' '
+        a(href='http://www.mashape.com') Mashape
+        | . Author:
+        =' '
+        a(href='http://rainum.me') Vazha Omanashvili
 
     script(src='/js/scripts.js')
 

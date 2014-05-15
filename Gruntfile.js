@@ -106,6 +106,7 @@ module.exports = function (grunt) {
           // Angular
           '<%= path.components %>/angular/angular.js',
           '<%= path.components %>/angular-route/angular-route.js',
+          '<%= path.components %>/angular-gestures/gestures.js',
           '<%= path.components %>/restangular/dist/restangular.js',
           '<%= path.components %>/ngprogress-lite/ngprogress-lite.js',
 

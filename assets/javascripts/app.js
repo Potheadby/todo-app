@@ -3,6 +3,7 @@
 var app = angular.module('Mashape-Todo', [
   'ngRoute',
   'restangular',
+  'angular-gestures',
   'ngProgressLite'
 ]);
 
