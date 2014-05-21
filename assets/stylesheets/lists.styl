@@ -1,0 +1,136 @@
+.todos-list
+  list-style: none
+  padding: 0
+  margin: 0
+  position: relative
+
+  &:before
+    content ""
+    background #ff
+    height: 100%
+    top 0
+    position: absolute
+    left: 25px
+    width: 5px
+
+.todo-item
+  position: relative
+  padding-left: 80px
+
+  &:first-child
+  &:last-child
+    &:before
+      content ""
+      position: absolute
+      background: body-bg
+      width: 56px
+      height: 50%;
+      left: 0;
+
+  &:first-child:before
+    top: 0
+
+  &:last-child:before
+    bottom: 0
+
+.todo-item + .todo-item
+  margin-top: 17px
+
+.todo-item-content
+  background: #fff
+  border-radius 2px
+  padding: 18px 40px 15px 14px
+  box-shadow 0 1px 2px rgba(#000, .1);
+
+.todo-item-time
+  color #bfc7d0
+
+.todo-item-title
+  font-size: 1.7em
+  margin: 0 0 10px 0
+
+.todo-item-body
+  color #66696c
+  padding-bottom: 15px
+
+.todo-item-toggle
+  position: absolute
+  z-index: 2
+  left 0
+  top 50%
+  margin-top: -28px
+  width 80px
+
+  label
+    @extend .icon
+    cursor pointer
+    display inline-block
+    width: 56px
+    height: 56px
+    border-radius 50%
+    background: #bfcdd8
+    color: #fff;
+    text-align: center;
+    line-height: @height;
+    font-size: 36px;
+    text-shadow: 0 1px rgba(#000, .3);
+    box-shadow: inset 0 2px 1px rgba(#000, .3), 0 0 0 1px #fff;
+
+  input:checked + label
+    background: #47ec6e
+
+    &:before
+      @extend .icon-check:before
+
+  input:disabled + label
+    background: #f0364c
+    line-height: 51px
+    font-size: 22px
+
+    &:before
+      @extend .icon-attention:before
+
+  input
+    display none
+
+.todo-editor-form
+  display: none
+
+  textarea
+    height: 80px
+    color #66696c
+
+.todo-item-edit
+  color #bfc7d0
+  text-decoration: none
+  font-size: 1.2em;
+  position: absolute
+  right: 21px
+  top: 15px
+
+  &:hover
+    color #bfc7d0 - 10%
+
+.todo-item-content.editing
+  padding-right: 14px
+
+  .todo-item-time
+  .todo-item-title
+  .todo-item-body
+    display none
+
+  .todo-editor-form
+    display block
+
+.todo-blank-item
+  padding: 50px 80px
+  font-size: 1.7em
+  color #a4b4c0
+
+  .todo-blank-item-icon
+    @extend .todo-item-toggle, .todo-item-toggle label
+    cursor default
+    background: #fff
+    box-shadow none
+    text-shadow: none
+    color body-bg

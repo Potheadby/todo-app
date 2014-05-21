@@ -6,6 +6,8 @@ angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout
    * show preloader on rest requests
    */
 
+  //$scope.editing = true;
+
   Restangular
       .setDefaultHeaders({ 'x-phone': $routeParams.phone })
       .addRequestInterceptor(function (elem) {
@@ -109,6 +111,19 @@ angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout
         $scope.updateList();
       }
     });
+  };
+
+  $scope.cancelEditing = function (todo) {
+    if (todo.markDeleted) return;
+
+    $scope.editedTodo = null;
+
+    if (!todo.text) {
+      todo.markDeleted = true;
+      $scope.destroyTodo(todo);
+    } else {
+      todo.save();
+    }
   };
 
   /**
