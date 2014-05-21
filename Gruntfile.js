@@ -106,8 +106,8 @@ module.exports = function (grunt) {
           // Angular
           '<%= path.components %>/angular/angular.js',
           '<%= path.components %>/angular-route/angular-route.js',
-          '<%= path.components %>/angular-gestures/gestures.js',
           '<%= path.components %>/restangular/dist/restangular.js',
+          '<%= path.components %>/angular-local-storage/angular-local-storage.js',
           '<%= path.components %>/ngprogress-lite/ngprogress-lite.js',
 
           // App
@@ -134,6 +134,15 @@ module.exports = function (grunt) {
       dist: '<%= path.dist %>/'
     },
     copy: {
+      images: {
+        expand: true,
+        cwd: '<%= path.assets %>/images/',
+        src: [
+          '**/*.{ico,png,jpg,gif}',
+          '!**/icons/*/*'
+        ],
+        dest: '<%= path.dist %>/img/'
+      },
       fonts: {
         expand: true,
         cwd: '<%= path.components %>/entypo/font',

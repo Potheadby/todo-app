@@ -1,26 +1,6 @@
 'use strict';
 
-angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout, $routeParams, Restangular, ngProgressLite) {
-  /**
-   * Set http header with mobile phone from URL and
-   * show preloader on rest requests
-   */
-
-  //$scope.editing = true;
-
-  Restangular
-      .setDefaultHeaders({ 'x-phone': $routeParams.phone })
-      .addRequestInterceptor(function (elem) {
-        ngProgressLite.start();
-
-        return elem;
-      })
-      .addResponseInterceptor(function (data) {
-        ngProgressLite.done();
-
-        return data;
-      });
-
+angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout, Restangular) {
   var todos = Restangular.all('todo');
 
   $scope.pageSize = 8; // items per page

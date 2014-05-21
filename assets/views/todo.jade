@@ -34,33 +34,3 @@ ul.todos-list
     .todo-blank-item-icon
       i.icon-cancel
     | Wohoo! You are done. Enjoy the rest of your day!
-
-
-
-
-//.todo-app
-//  header.app-header
-//    h1 Mashape Todo App
-//    .search-block
-//      input(type='search', name='s', ng-model='query', results="5")
-//
-//  section.app-content
-//    ul.todo-list
-//      li.todo-list-item
-//        form(ng-submit='addTodo(newTodo)')
-//          input(type='text', ng-model='newTodo', placeholder='Write new todo and press enter key', autofocus)
-//      li.todo-list-item(ng-repeat='todo in todos | orderBy:"-created"', ng-class='{ done: todo.done, editing: todo == editedTodo }')
-//        .todo-toggle
-//          input(type='checkbox', ng-model='todo.done', ng-change='todo.save()')
-//        .todo-text(hm-tap='editTodo(todo)') {{ todo.text }}
-//
-//        form.todo-editor(ng-submit='doneEditing(todo)')
-//          input(type='text', ng-model='todo.text', ng-change='editTodo(todo)', ng-trim='true', ng-blur='doneEditing(todo)', todo-focus="todo == editedTodo")
-//
-//        button.todo-destroy(hm-tap='destroyTodo(todo)') &times;
-//      li.todo-list-item.todo-pagination(ng-show='todos.length && todos.total > 1')
-//        button.prev(href='#' hm-tap='changePage(-1)', ng-hide='page == 1') &larr;
-//        button.next(href='#' hm-tap='changePage(1)', ng-hide='page == todos.total') &rarr;
-//        .page-count page {{ page }} of {{ todos.total }}
-//
-//  footer.app-footer

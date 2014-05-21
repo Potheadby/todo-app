@@ -3,11 +3,11 @@
 var app = angular.module('Mashape-Todo', [
   'ngRoute',
   'restangular',
-  'angular-gestures',
+  'LocalStorageModule',
   'ngProgressLite'
 ]);
 
-app.config(function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider) {
+app.config(function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider, localStorageServiceProvider) {
   /**
    * Restangular initial config
    */
@@ -32,14 +32,41 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider, Restangul
   $locationProvider.html5Mode(true);
 
   $routeProvider
-      .when('/:phone?', {
+      .when('/', {
         templateUrl: '/todo.html',
         controller: 'TodoCtrl'
+      })
+      .when('/settings', {
+        templateUrl: '/settings.html',
+        controller: 'SettingsCtrl'
       })
       .otherwise({
         redirectTo: '/'
       });
 });
 
-app.run();
+app.run(function (localStorageService, Restangular, ngProgressLite) {
+  /**
+   * Set http header with mobile phone from URL and
+   * show preloader on rest requests
+   */
+
+  var userPhone = localStorageService.get('phone');
+
+  if (userPhone) {
+    Restangular.setDefaultHeaders({ 'x-phone': userPhone });
+  }
+
+  Restangular
+      .addRequestInterceptor(function (elem) {
+        ngProgressLite.start();
+
+        return elem;
+      })
+      .addResponseInterceptor(function (data) {
+        ngProgressLite.done();
+
+        return data;
+      });
+});
 
