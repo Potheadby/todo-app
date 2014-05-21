@@ -105,14 +105,4 @@ angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout
       todo.save();
     }
   };
-
-  /**
-   * Pagination
-   * @param shift - page index shift, default is 1
-   */
-
-  $scope.changePage = function (shift) {
-    $scope.page += shift;
-    $scope.updateList();
-  };
 });

@@ -14,20 +14,7 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider, Restangul
 
   RestangularProvider
       .setBaseUrl('/api/v1')
-      .setRestangularFields({ id: '_id' })
-      .addResponseInterceptor(function (data, operation) {
-        var extractedData;
-
-        if (operation === 'getList') {
-          extractedData = data.data;
-          extractedData.total = data.total;
-          extractedData.page = data.page;
-        } else {
-          extractedData = data;
-        }
-
-        return extractedData;
-      });
+      .setRestangularFields({ id: '_id' });
 
   $locationProvider.html5Mode(true);
 
