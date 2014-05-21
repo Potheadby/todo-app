@@ -3,10 +3,24 @@ ul.todos-list
     .todo-item-toggle
       input(type='checkbox', ng-model='todo.done', ng-change='todo.save()', id='todo-{{ todo._id }}')
       label(for='todo-{{ todo._id }}')
+
     .todo-item-content(ng-class='{ editing: todo == editedTodo }')
-      a.icon-cog.todo-item-edit(href='#', title='Edit', hm-tap='editTodo(todo)', ng-hide='todo == editedTodo')
+      .todo-item-edit.dropdown(ng-hide='todo == editedTodo', dropdown, dropdown-toggle-class='open')
+        a.icon-cog(href='#', title='Edit')
+
+        ul.dropdown-list
+          li.dropdown-list-item
+            a(href='#', ng-click='editTodo(todo)')
+              i.icon-pencil
+              | Edit
+          li.dropdown-list-item
+            a(href='#', ng-click='destroyTodo(todo)')
+              i.icon-trash
+              | Remove
+
       h4.todo-item-title {{ todo.title }}
       .todo-item-body {{ todo.body }}
+
       form.todo-editor-form(ng-submit='doneEditing(todo)')
         .form-line
           input.form-control(type='text', ng-model='todo.title', ng-trim='true', todo-focus="todo == editedTodo")
