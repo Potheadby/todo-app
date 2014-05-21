@@ -2,22 +2,23 @@ aside.sidebar
   nav.sidebar-nav
     ul
       li
-        a(href='/today')
-          i.icon-calendar
-          | Today
-      li
-        a(href='/Week')
-          i.icon-calendar
-          | Week
-      li
-        a(href='/all-time')
+        a(href='/')
           i.icon-inbox
-          | All time
+          | Tasks
       li
         a(href='/settings')
           i.icon-cog
           | Settings
-      li.add-new
-        a(href='/add-new')
+      li.add-new.dropdown.right(dropdown, dropdown-toggle-class='open')
+        a(href='#')
           i.icon-plus-circled
           | Add new
+        .dropdown-content
+          form(ng-submit='doneEditing(todo)')
+            .form-line
+              input.form-control(type='text', ng-model='newTodo.title', ng-trim='true', placeholder='Type your title here')
+            .form-line
+              textarea.form-control(rows='6', ng-model='newTodo.body', ng-trim='true')
+            .form-line.form-buttons
+              button.btn.btn-default(ng-submit='doneEditing(todo)') Discard
+              button.btn.btn-success(ng-submit='doneEditing(todo)') Save
