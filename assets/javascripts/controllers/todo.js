@@ -59,13 +59,13 @@ angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout
 
   /**
    * Add todo and keep proper page size
-   * @param todo - new todo item text
+   * @param todo - new todo item
    */
 
   $scope.addTodo = function (todo) {
     if (!todo) return;
 
-    todos.post({ text: todo }).then(function (todo) {
+    todos.post(todo).then(function (todo) {
       $scope.newTodo = '';
 
       if ($scope.todos.length >= $scope.pageSize) {
@@ -77,7 +77,7 @@ angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout
   };
 
   /**
-   * Edit todo item and save it or remove, if no text is specified
+   * Edit todo item and save it or remove, if no title is specified
    * @param todo - item for editing
    */
 
@@ -86,7 +86,7 @@ angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout
 
     $scope.editedTodo = null;
 
-    if (!todo.text) {
+    if (!todo.title) {
       todo.markDeleted = true;
       $scope.destroyTodo(todo);
     } else {
@@ -118,7 +118,7 @@ angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout
 
     $scope.editedTodo = null;
 
-    if (!todo.text) {
+    if (!todo.title) {
       todo.markDeleted = true;
       $scope.destroyTodo(todo);
     } else {

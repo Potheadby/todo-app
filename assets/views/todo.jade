@@ -5,13 +5,13 @@ ul.todos-list
       label(for='todo-{{ todo._id }}')
     .todo-item-content(ng-class='{ editing: todo == editedTodo }')
       a.icon-cog.todo-item-edit(href='#', title='Edit', hm-tap='editTodo(todo)', ng-hide='todo == editedTodo')
-      h4.todo-item-title {{ todo.text }}
-      .todo-item-body {{ todo.text }}
+      h4.todo-item-title {{ todo.title }}
+      .todo-item-body {{ todo.body }}
       form.todo-editor-form(ng-submit='doneEditing(todo)')
         .form-line
-          input.form-control(type='text', ng-model='todo.text', ng-trim='true', todo-focus="todo == editedTodo")
+          input.form-control(type='text', ng-model='todo.title', ng-trim='true', todo-focus="todo == editedTodo")
         .form-line
-          textarea.form-control(rows='6', ng-model='todo.text', ng-trim='true')
+          textarea.form-control(rows='6', ng-model='todo.body', ng-trim='true')
         .form-line.form-buttons
           button.btn.btn-default(ng-submit='doneEditing(todo)') Discard
           button.btn.btn-success(ng-submit='doneEditing(todo)') Save
