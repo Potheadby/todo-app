@@ -1,10 +1,8 @@
 'use strict';
 
-angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout, Restangular) {
+angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout, Restangular, searchQueryService) {
   var todos = Restangular.all('todo');
 
-  $scope.pageSize = 8; // items per page
-  $scope.page = 1;
   $scope.editedTodo = null;
   $scope.query = '';
 
@@ -12,30 +10,15 @@ angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout
    * Watch search string change for updating todos list
    */
 
-  $scope.$watch('query', function (newValue, oldValue) {
-    if (newValue === oldValue) return; // Prevent non change trigger
-
-    if ($scope.searchTimeout) $timeout.cancel($scope.searchTimeout);
-
-    $scope.searchTimeout = $timeout($scope.updateList, 250);
+  $scope.$on('handleBroadcast', function () {
+    $scope.todos = todos.getList({ q: searchQueryService.query }).$object;
   });
 
   /**
-   * Fetch all todos with current page state
-   * @param page - current page index
-   * @param limit - items per page
-   * @param q - search query
+   * Fetch all todos
    */
 
-  $scope.updateList = function () {
-    $scope.todos = todos.getList({
-      page: $scope.page,
-      limit: $scope.pageSize,
-      q: $scope.query
-    }).$object;
-  };
-
-  $scope.updateList();
+  $scope.todos = todos.getList({ q: $scope.query }).$object;
 
   /**
    * Add todo and keep proper page size
@@ -47,11 +30,6 @@ angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout
 
     todos.post(todo).then(function (todo) {
       $scope.newTodo = '';
-
-      if ($scope.todos.length >= $scope.pageSize) {
-        $scope.todos.shift()
-      }
-
       $scope.todos.push(todo);
     });
   };
@@ -86,10 +64,6 @@ angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout
   $scope.destroyTodo = function (todo) {
     todo.remove().then(function () {
       $scope.todos.splice($scope.todos.indexOf(todo), 1);
-
-      if (!$scope.todos.length) {
-        $scope.updateList();
-      }
     });
   };
 

@@ -1,5 +1,5 @@
-header.header
+header.header(ng-controller='HeaderCtrl')
   .header-search-form
     form
       i.icon-search
-      input(type='search', name='q', placeholder='Search for particular task')
+      input(type='search', name='q', ng-model='query', placeholder='Search for particular task')
