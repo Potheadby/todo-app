@@ -13,6 +13,16 @@
     left: 25px
     width: 5px
 
+.todos-list.empty
+  &:before
+    position: fixed
+    left: sidebar-width + 50px
+
+  .todo-item:last-child:before
+    top -50%
+    bottom: auto;
+    height: 100%;
+
 .todo-item
   position: relative
   padding-left: 80px
@@ -126,13 +136,22 @@
 
 .todo-blank-item
   padding: 50px 80px
+
+.todo-blank-item-icon
+  @extend .todo-item-toggle, .todo-item-toggle label
+  cursor default
+  background: #fff
+  box-shadow none
+  text-shadow: none
+  color #a4b4c0
+
+.todo-blank-item-message
   font-size: 1.7em
   color #a4b4c0
 
-  .todo-blank-item-icon
-    @extend .todo-item-toggle, .todo-item-toggle label
-    cursor default
-    background: #fff
-    box-shadow none
-    text-shadow: none
-    color body-bg
+  a
+    color base-color
+    text-decoration: none
+
+    &:hover
+      text-decoration: underline

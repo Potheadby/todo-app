@@ -1,4 +1,4 @@
-ul.todos-list
+ul.todos-list(ng-class='{ empty: !todos.length }')
   li.todo-item(ng-repeat='todo in todos | orderBy:"-created"')
     .todo-item-toggle
       input(type='checkbox', ng-model='todo.done', ng-change='todo.save()', id='todo-{{ todo._id }}')
@@ -33,4 +33,8 @@ ul.todos-list
   li.todo-item.todo-blank-item
     .todo-blank-item-icon
       i.icon-cancel
-    | Wohoo! You are done. Enjoy the rest of your day!
+    .todo-blank-item-message(ng-show='todos.length') Wohoo! You are done. Enjoy the rest of your day!
+    .todo-blank-item-message(ng-show='!todos.length')
+      | You got no tasks for today. Take a day off or
+      =' '
+      a(href='#') add new one
