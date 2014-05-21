@@ -19,7 +19,8 @@
     "underscore": "~1.6.0",
     "ngprogress": "~1.0.4",
     "ngprogress-lite": "~1.0.5",
-    "angular-gestures": "~0.2.2"
+    "angular-gestures": "~0.2.2",
+    "entypo": "*"
   },
   "resolutions": {
     "angular": "1.2.13"

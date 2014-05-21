@@ -33,6 +33,7 @@
     "grunt-contrib-watch": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-jade": "*",
-    "grunt-ngmin": "*"
+    "grunt-ngmin": "*",
+    "grunt-contrib-copy": "*"
   }
 }

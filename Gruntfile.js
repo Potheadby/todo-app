@@ -133,6 +133,14 @@ module.exports = function (grunt) {
     clean: {
       dist: '<%= path.dist %>/'
     },
+    copy: {
+      fonts: {
+        expand: true,
+        cwd: '<%= path.components %>/entypo/font',
+        src: '**/*.{eot,svg,ttf,woff}',
+        dest: '<%= path.dist %>/fonts/'
+      }
+    },
     watch: {
       options: {
         livereload: true
@@ -162,6 +170,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build:dev', [
     'clean',
+    'copy',
     'concat',
     'jade:dev',
     'stylus:dev'
@@ -169,6 +178,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build:prod', [
     'clean',
+    'copy',
     'concat',
     'ngmin',
     'uglify',
