@@ -1,27 +1,27 @@
 .header
   height header-height
-  background: header-bg
-  position: fixed
-  width: 100%
+  background header-bg
+  position fixed
+  width 100%
   margin-left sidebar-width
-  top: 0
-  box-shadow 0 1px 3px rgba(#000, .1);
-  z-index: sidebar-z-index + 1
+  top 0
+  box-shadow 0 1px 3px rgba(#000, .1)
+  z-index sidebar-z-index + 1
 
 .header-search-form
-  padding: 19px 0 0 20px
-  position: relative
+  padding 19px 0 0 20px
+  position relative
 
   i
-    font-size: 1.3em;
-    width: 26px;
-    display: inline-block;
-    text-align: left;
+    font-size 1.3em
+    width 26px
+    display inline-block
+    text-align left
     color #3f4e5a
-    vertical-align: bottom
+    vertical-align bottom
 
   input
     border 0 none
-    background: header-bg
+    background header-bg
     +input-placeholder()
       color #b4bec8

@@ -1,5 +1,3 @@
-// TODO search empty results http://stackoverflow.com/questions/14615495/angularjs-placeholder-for-empty-result-from-filter
-
 ul.todos-list(ng-class='{ empty: !todos.length || !filteredTodos.length }')
   li.todo-item.search-exculde-animation(ng-repeat='todo in filteredTodos = (todos | filter: {title:query, body:query} | orderBy: "created":true)')
     .todo-item-toggle

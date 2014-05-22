@@ -7,7 +7,7 @@ angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, Restangu
    * Fetch all todos from server
    */
 
-  $scope.todos = todos.getList({ q: $scope.query || '' }).$object;
+  $scope.todos = todos.getList().$object;
 
   /**
    * Watch search string change and update todos list

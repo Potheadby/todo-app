@@ -1,5 +1,5 @@
 /**
- * Service that broadcasts search query to other controllers
+ * Service that broadcasts data to other controllers
  */
 
 angular.module('Mashape-Todo').factory('transportService', function ($rootScope) {

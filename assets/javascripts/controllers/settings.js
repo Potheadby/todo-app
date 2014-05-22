@@ -4,7 +4,7 @@ angular.module('Mashape-Todo').controller('SettingsCtrl', function ($scope, Rest
   $scope.phone = localStorageService.get('phone');
 
   /**
-   * Save user phone to localstorage and
+   * Save user phone to localStorage and
    * update Restangular HTTP header
    */
 
