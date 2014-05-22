@@ -9,7 +9,7 @@ aside.sidebar(ng-controller='SidebarCtrl')
         a(href='/settings', active-link='active')
           i.icon-cog
           | Settings
-      li.add-new.dropdown.right(dropdown, dropdown-toggle-class='open')
+      li.add-new.dropdown.right(dropdown, dropdown-toggle-class='open', hide-on-route='/settings')
         a(href='#', data-toggle='dropdown')
           i.icon-plus-circled
           | Add new

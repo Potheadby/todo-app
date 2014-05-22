@@ -41,4 +41,4 @@ ul.todos-list(ng-class='{ empty: !todos.length || !filteredTodos.length }')
       | You got no tasks for today. Take a day off or
       =' '
       a(href='#', ng-click='showAddForm()') add new one
-    .todo-blank-item-message(ng-show='!filteredTodos.length') Nothing found
+    .todo-blank-item-message(ng-show='todos.length && !filteredTodos.length') Nothing found
