@@ -37,8 +37,5 @@ ul.todos-list(ng-class='{ empty: !todos.length || !filteredTodos.length }')
     .todo-blank-item-icon
       i.icon-cancel
     .todo-blank-item-message(ng-show='todos.length && filteredTodos.length') Wohoo! You are done. Enjoy the rest of your day!
-    .todo-blank-item-message(ng-show='!todos.length')
-      | You got no tasks for today. Take a day off or
-      =' '
-      a(href='#', ng-click='showAddForm()') add new one
+    .todo-blank-item-message(ng-show='!todos.length') You got no tasks for today. Take a day off or add new one
     .todo-blank-item-message(ng-show='todos.length && !filteredTodos.length') Nothing found
