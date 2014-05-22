@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('Mashape-Todo').controller('SettingsCtrl', function ($scope, Restangular, localStorageService) {
-  $scope.phone = localStorageService.get('phone');
+  var cachedPhone = localStorageService.get('phone');
+
+  $scope.phone = cachedPhone;
 
   /**
    * Save user phone to localStorage and
@@ -9,9 +11,13 @@ angular.module('Mashape-Todo').controller('SettingsCtrl', function ($scope, Rest
    */
 
   $scope.submit = function () {
-    if ($scope.phone) {
+    if ($scope.phone && $scope.phone !== cachedPhone) {
       localStorageService.set('phone', $scope.phone);
       Restangular.setDefaultHeaders({ 'x-phone': $scope.phone });
+
+      $scope.phoneUpdated = true;
+    } else {
+      $scope.phoneUpdated = false;
     }
   };
 });
