@@ -12,6 +12,10 @@ angular.module('Mashape-Todo').controller('SidebarCtrl', function ($scope, trans
     $scope.newTodo = {};
   };
 
+  /**
+   * Reset and hide form
+   */
+
   $scope.reset = function () {
     $scope.newTodo = {};
   };
