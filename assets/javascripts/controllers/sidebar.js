@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Mashape-Todo').controller('SidebarCtrl', function ($scope, addTodoService) {
+angular.module('Mashape-Todo').controller('SidebarCtrl', function ($scope, transportService) {
   /**
    * Broadcast new todo item
    */
@@ -8,7 +8,7 @@ angular.module('Mashape-Todo').controller('SidebarCtrl', function ($scope, addTo
   $scope.addTodo = function () {
     if (!$scope.newTodo) return;
 
-    addTodoService.prepForBroadcast($scope.newTodo);
+    transportService.prepForBroadcast($scope.newTodo, 'todoAdded');
     $scope.newTodo = {};
   };
 

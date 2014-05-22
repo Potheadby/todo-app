@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, Restangular, searchQueryService, addTodoService) {
+angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, Restangular, transportService) {
   var todos = Restangular.all('todo');
 
   /**
@@ -13,8 +13,8 @@ angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, Restangu
    * Watch search string change and update todos list
    */
 
-  $scope.$on('handleBroadcast', function () {
-    $scope.query = searchQueryService.query;
+  $scope.$on('queryUpdated', function () {
+    $scope.query = transportService.msg;
   });
 
   /**
@@ -22,7 +22,7 @@ angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, Restangu
    */
 
   $scope.$on('todoAdded', function () {
-    todos.post(addTodoService.todo).then(function (todo) {
+    todos.post(transportService.msg).then(function (todo) {
       $scope.todos.push(todo);
     });
   });
