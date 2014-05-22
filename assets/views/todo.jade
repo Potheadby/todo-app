@@ -1,5 +1,5 @@
 ul.todos-list(ng-class='{ empty: !todos.length || !filteredTodos.length }')
-  li.todo-item.search-exculde-animation(ng-repeat='todo in filteredTodos = (todos | filter: {title:query, body:query} | orderBy: "created":true)')
+  li.todo-item.search-exculde-animation(ng-repeat='todo in filteredTodos = (todos | filter:query | orderBy:"created":true)')
     .todo-item-toggle
       input(type='checkbox', ng-model='todo.done', ng-change='todo.save()', id='todo-{{ todo._id }}')
       label(for='todo-{{ todo._id }}')
