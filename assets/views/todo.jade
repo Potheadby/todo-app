@@ -1,3 +1,5 @@
+
+span(style='margin-left: 200px') {{ query }}
 ul.todos-list(ng-class='{ empty: !todos.length || !filteredTodos.length }')
   li.todo-item.search-exculde-animation(ng-repeat='todo in filteredTodos = (todos | filter: {title:query, body:query} | orderBy: "created":true)')
     .todo-item-toggle
