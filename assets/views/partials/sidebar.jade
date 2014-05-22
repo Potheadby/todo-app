@@ -1,4 +1,4 @@
-aside.sidebar
+aside.sidebar(ng-controller='SidebarCtrl')
   nav.sidebar-nav
     ul
       li
@@ -14,11 +14,11 @@ aside.sidebar
           i.icon-plus-circled
           | Add new
         .dropdown-content
-          form(ng-submit='doneEditing(todo)')
+          form(ng-submit='addTodo()')
             .form-line
               input.form-control(type='text', ng-model='newTodo.title', ng-trim='true', placeholder='Type your title here')
             .form-line
               textarea.form-control(rows='6', ng-model='newTodo.body', ng-trim='true')
             .form-line.form-buttons
-              button.btn.btn-default(ng-submit='doneEditing(todo)') Discard
-              button.btn.btn-success(ng-submit='doneEditing(todo)') Save
+              a.btn.btn-default(href='#', ng-click='reset()') Discard
+              button.btn.btn-success Save
