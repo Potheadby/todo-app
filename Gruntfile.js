@@ -122,6 +122,9 @@ module.exports = function (grunt) {
         compress: {
           drop_console: true
         },
+        beautify : {
+          ascii_only : true
+        },
         mangle: false,
         preserveComments: false,
         banner: '<%= banner %>'
