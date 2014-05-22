@@ -2,12 +2,13 @@
 
 var app = angular.module('Mashape-Todo', [
   'ngRoute',
+  'ngAnimate',
   'restangular',
   'LocalStorageModule',
   'ngProgressLite'
 ]);
 
-app.config(function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider, localStorageServiceProvider) {
+app.config(function ($routeProvider, $locationProvider, $httpProvider, RestangularProvider) {
   /**
    * Restangular initial config
    */

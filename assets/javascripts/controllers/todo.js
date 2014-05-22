@@ -11,7 +11,7 @@ angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout
    */
 
   $scope.$on('handleBroadcast', function () {
-    $scope.todos = todos.getList({ q: searchQueryService.query }).$object;
+    $scope.query = searchQueryService.query;
   });
 
   /**
