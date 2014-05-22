@@ -8,17 +8,23 @@ angular.module('Mashape-Todo').directive('dropdown', function ($document) {
   return {
     restrict: 'A',
     link: function (scope, element, attrs) {
-      scope.toggleDropdown = function (visible) {
-        element.toggleClass(attrs.dropdownToggleClass || 'open', visible);
-      };
+      scope.dropdownVisible = false;
 
-      element.on('click', function () {
-        scope.toggleDropdown(true);
+      scope.$watch('dropdownVisible', function (newValue, oldValue) {
+        if (newValue === oldValue) return;
+
+        element.toggleClass(attrs.dropdownToggleClass || 'open', newValue);
+      });
+
+      element.find('[data-toggle="dropdown"]').on('click', function () {
+        scope.dropdownVisible = !scope.dropdownVisible;
+        scope.$apply();
       });
 
       $document.on('click', function (e) {
         if (element.has(e.target).length > 0) return;
-        scope.toggleDropdown(false);
+        scope.dropdownVisible = false;
+        scope.$apply();
       });
     }
   };

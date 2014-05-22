@@ -10,7 +10,7 @@ aside.sidebar(ng-controller='SidebarCtrl')
           i.icon-cog
           | Settings
       li.add-new.dropdown.right(dropdown, dropdown-toggle-class='open')
-        a(href='#')
+        a(href='#', data-toggle='dropdown')
           i.icon-plus-circled
           | Add new
         .dropdown-content
@@ -20,5 +20,5 @@ aside.sidebar(ng-controller='SidebarCtrl')
             .form-line
               textarea.form-control(rows='6', ng-model='newTodo.body', ng-trim='true')
             .form-line.form-buttons
-              a.btn.btn-default(href='#', ng-click='reset()') Discard
-              button.btn.btn-success Save
+              a.btn.btn-default(href='#', ng-click='reset()', data-toggle='dropdown') Discard
+              button.btn.btn-success(data-toggle='dropdown') Save
