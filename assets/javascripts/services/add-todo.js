@@ -1,5 +1,5 @@
 /**
- * Service that broadcasts search query to other controllers
+ * Service that broadcasts new todo item to other controllers
  */
 
 angular.module('Mashape-Todo').factory('addTodoService', function ($rootScope) {

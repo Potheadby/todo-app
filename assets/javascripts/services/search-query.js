@@ -3,7 +3,6 @@
  */
 
 angular.module('Mashape-Todo').factory('searchQueryService', function ($rootScope) {
-
   var searchQueryService = {};
 
   searchQueryService.query = '';
