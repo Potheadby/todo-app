@@ -1,0 +1,17 @@
+.search-exculde-animation
+  &.ng-enter
+  &.ng-leave
+  &.ng-move
+    transition: 0.2s linear all
+
+  &.ng-enter
+  &.ng-leave.ng-leave-active
+    opacity: 0
+
+  &.ng-move.ng-move-active
+  &.ng-enter.ng-enter-active
+  &.ng-leave
+    opacity: 1
+
+  &.ng-move
+    opacity: 0.5

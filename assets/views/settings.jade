@@ -1,0 +1,9 @@
+h3 Settings.
+
+.settings-form
+  form(ng-submit='submit()')
+    .form-line We need your phone number, so we can send you notifications.
+    .form-line
+      input.form-control(type='text', ng-model='phone', ng-trim='true')
+    .form-line.form-buttons
+      button.btn.btn-success Save

@@ -1,123 +1,85 @@
 'use strict';
 
-angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, $timeout, $routeParams, Restangular, ngProgressLite) {
-  /**
-   * Set http header with mobile phone from URL and
-   * show preloader on rest requests
-   */
-
-  Restangular
-      .setDefaultHeaders({ 'x-phone': $routeParams.phone })
-      .addRequestInterceptor(function (elem) {
-        ngProgressLite.start();
-
-        return elem;
-      })
-      .addResponseInterceptor(function (data) {
-        ngProgressLite.done();
-
-        return data;
-      });
-
+angular.module('Mashape-Todo').controller('TodoCtrl', function ($scope, Restangular, transportService) {
   var todos = Restangular.all('todo');
 
-  $scope.pageSize = 8; // items per page
-  $scope.page = 1;
-  $scope.editedTodo = null;
-  $scope.query = '';
-
   /**
-   * Watch search string change for updating todos list
+   * Fetch all todos from server
    */
 
-  $scope.$watch('query', function (newValue, oldValue) {
-    if (newValue === oldValue) return; // Prevent non change trigger
+  $scope.todos = todos.getList().$object;
 
-    if ($scope.searchTimeout) $timeout.cancel($scope.searchTimeout);
+  /**
+   * Watch search string change and update todos list
+   */
 
-    $scope.searchTimeout = $timeout($scope.updateList, 250);
+  $scope.$on('queryUpdated', function () {
+    $scope.query = transportService.msg;
   });
 
   /**
-   * Fetch all todos with current page state
-   * @param page - current page index
-   * @param limit - items per page
-   * @param q - search query
+   * Add new todo from broadcast event
    */
 
-  $scope.updateList = function () {
-    $scope.todos = todos.getList({
-      page: $scope.page,
-      limit: $scope.pageSize,
-      q: $scope.query
-    }).$object;
-  };
-
-  $scope.updateList();
-
-  /**
-   * Add todo and keep proper page size
-   * @param todo - new todo item text
-   */
-
-  $scope.addTodo = function (todo) {
-    if (!todo) return;
-
-    todos.post({ text: todo }).then(function (todo) {
-      $scope.newTodo = '';
-
-      if ($scope.todos.length >= $scope.pageSize) {
-        $scope.todos.shift()
-      }
-
+  $scope.$on('todoAdded', function () {
+    todos.post(transportService.msg).then(function (todo) {
       $scope.todos.push(todo);
     });
+  });
+
+  /**
+   * Edit todo item
+   * @param todo - scope todo item
+   */
+
+  $scope.editTodo = function (todo) {
+    todo.editing = true;
+    $scope.tempTodo = angular.copy(todo.plain());
   };
 
   /**
-   * Edit todo item and save it or remove, if no text is specified
-   * @param todo - item for editing
+   * Check for changes and update or destroy todo, hide editor form
+   * @param todo - scope todo item
    */
 
-  $scope.doneEditing = function (todo) {
-    if (todo.markDeleted) return;
+  $scope.updateTodo = function (todo) {
+    todo.editing = false;
 
-    $scope.editedTodo = null;
+    // Check for changes
+    if (todo.title === $scope.tempTodo.title &&
+        todo.body === $scope.tempTodo.body) {
+      return;
+    }
 
-    if (!todo.text) {
-      todo.markDeleted = true;
+    if (!todo.title) {
       $scope.destroyTodo(todo);
     } else {
       todo.save();
     }
   };
 
-  $scope.editTodo = function (todo) {
-    $scope.editedTodo = todo;
-  };
-
   /**
-   * Remove todo item and keep proper page size
-   * @param todo - item for editing
+   * Destory todo item
+   * @param todo - scope todo item
    */
 
   $scope.destroyTodo = function (todo) {
     todo.remove().then(function () {
       $scope.todos.splice($scope.todos.indexOf(todo), 1);
-
-      if (!$scope.todos.length) {
-        $scope.updateList();
-      }
     });
   };
 
   /**
-   * Pagination
-   * @param shift - page index shift, default is 1
+   * Reset changes in todo and hides editor form
+   * @param todo - scope todo item
    */
 
-  $scope.changePage = function (shift) {
-    $scope.page += shift;
-    $scope.updateList();
+  $scope.resetTodo = function (todo) {
+    todo = $scope.todos[$scope.todos.indexOf(todo)];
+
+    todo.title = $scope.tempTodo.title;
+    todo.body = $scope.tempTodo.body;
+
+    todo.editing = false;
   };
 });

@@ -1,0 +1,24 @@
+aside.sidebar(ng-controller='SidebarCtrl')
+  nav.sidebar-nav
+    ul
+      li
+        a(href='/', active-link='active')
+          i.icon-inbox
+          | Tasks
+      li
+        a(href='/settings', active-link='active')
+          i.icon-cog
+          | Settings
+      li.add-new.dropdown.right(dropdown, dropdown-toggle-class='open', hide-on-route='/settings')
+        a(href='#', data-toggle='dropdown')
+          i.icon-plus-circled
+          | Add new
+        .dropdown-content
+          form(ng-submit='addTodo()')
+            .form-line
+              input.form-control(type='text', ng-model='newTodo.title', ng-trim='true', placeholder='Type your title here')
+            .form-line
+              textarea.form-control(rows='6', ng-model='newTodo.body', ng-trim='true')
+            .form-line.form-buttons
+              a.btn.btn-default(href='#', ng-click='reset()', data-toggle='dropdown') Discard
+              button.btn.btn-success(data-toggle='dropdown') Save

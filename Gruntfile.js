@@ -106,9 +106,10 @@ module.exports = function (grunt) {
           // Angular
           '<%= path.components %>/angular/angular.js',
           '<%= path.components %>/angular-route/angular-route.js',
-          '<%= path.components %>/angular-gestures/gestures.js',
           '<%= path.components %>/restangular/dist/restangular.js',
+          '<%= path.components %>/angular-local-storage/angular-local-storage.js',
           '<%= path.components %>/ngprogress-lite/ngprogress-lite.js',
+          '<%= path.components %>/angular-animate/angular-animate.js',
 
           // App
           '<%= path.assets %>/javascripts/**/*.js'
@@ -132,6 +133,23 @@ module.exports = function (grunt) {
     },
     clean: {
       dist: '<%= path.dist %>/'
+    },
+    copy: {
+      images: {
+        expand: true,
+        cwd: '<%= path.assets %>/images/',
+        src: [
+          '**/*.{ico,png,jpg,gif}',
+          '!**/icons/*/*'
+        ],
+        dest: '<%= path.dist %>/img/'
+      },
+      fonts: {
+        expand: true,
+        cwd: '<%= path.components %>/entypo/font',
+        src: '**/*.{eot,svg,ttf,woff}',
+        dest: '<%= path.dist %>/fonts/'
+      }
     },
     watch: {
       options: {
@@ -162,6 +180,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build:dev', [
     'clean',
+    'copy',
     'concat',
     'jade:dev',
     'stylus:dev'
@@ -169,6 +188,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build:prod', [
     'clean',
+    'copy',
     'concat',
     'ngmin',
     'uglify',

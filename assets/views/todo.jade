@@ -1,26 +1,39 @@
-.todo-app
-  header.app-header
-    h1 Mashape Todo App
-    .search-block
-      input(type='search', name='s', ng-model='query', results="5")
+ul.todos-list(ng-class='{ empty: !todos.length || !filteredTodos.length }')
+  li.todo-item.search-exculde-animation(ng-repeat='todo in filteredTodos = (todos | filter: {title:query, body:query} | orderBy: "created":true)')
+    .todo-item-toggle
+      input(type='checkbox', ng-model='todo.done', ng-change='todo.save()', id='todo-{{ todo._id }}')
+      label(for='todo-{{ todo._id }}')
 
-  section.app-content
-    ul.todo-list
-      li.todo-list-item
-        form(ng-submit='addTodo(newTodo)')
-          input(type='text', ng-model='newTodo', placeholder='Write new todo and press enter key', autofocus)
-      li.todo-list-item(ng-repeat='todo in todos | orderBy:"-created"', ng-class='{ done: todo.done, editing: todo == editedTodo }')
-        .todo-toggle
-          input(type='checkbox', ng-model='todo.done', ng-change='todo.save()')
-        .todo-text(hm-tap='editTodo(todo)') {{ todo.text }}
+    .todo-item-content(ng-class='{ editing: todo.editing }')
+      .todo-item-edit.dropdown(ng-hide='todo.editing', dropdown, dropdown-toggle-class='open')
+        a.icon-cog(href='#', title='Edit', data-toggle='dropdown')
 
-        form.todo-editor(ng-submit='doneEditing(todo)')
-          input(type='text', ng-model='todo.text', ng-change='editTodo(todo)', ng-trim='true', ng-blur='doneEditing(todo)', todo-focus="todo == editedTodo")
+        .dropdown-content
+          ul.dropdown-list
+            li.dropdown-list-item
+              a(href='#', ng-click='editTodo(todo)')
+                i.icon-pencil
+                | Edit
+            li.dropdown-list-item
+              a(href='#', ng-click='destroyTodo(todo)')
+                i.icon-trash
+                | Remove
 
-        button.todo-destroy(hm-tap='destroyTodo(todo)') &times;
-      li.todo-list-item.todo-pagination(ng-show='todos.length && todos.total > 1')
-        button.prev(href='#' hm-tap='changePage(-1)', ng-hide='page == 1') &larr;
-        button.next(href='#' hm-tap='changePage(1)', ng-hide='page == todos.total') &rarr;
-        .page-count page {{ page }} of {{ todos.total }}
+      h4.todo-item-title {{ todo.title }}
+      .todo-item-body {{ todo.body }}
 
-  footer.app-footer
+      form.todo-editor-form(ng-submit='updateTodo(todo)')
+        .form-line
+          input.form-control(type='text', ng-model='todo.title', ng-trim='true')
+        .form-line
+          textarea.form-control(rows='6', ng-model='todo.body', ng-trim='true')
+        .form-line.form-buttons
+          a.btn.btn-default(href='#', ng-click='resetTodo(todo)') Discard
+          button.btn.btn-success Save
+
+  li.todo-item.todo-blank-item
+    .todo-blank-item-icon
+      i.icon-cancel
+    .todo-blank-item-message(ng-show='todos.length && filteredTodos.length') Wohoo! You are done. Enjoy the rest of your day!
+    .todo-blank-item-message(ng-show='!todos.length') You got no tasks for today. Take a day off or add new one
+    .todo-blank-item-message(ng-show='todos.length && !filteredTodos.length') Nothing found

@@ -1,7 +1,7 @@
 {
   "name": "mashape-todo-app",
   "title": "Mashape Todo App",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "private": true,
   "author": {
     "name": "Vazha Omanashvili",
@@ -19,7 +19,6 @@
     "express": "~3.6.0",
     "mongoose": "~3.8.9",
     "twilio": "~1.6.0",
-    "mongoose-paginate": "~2.2.0",
     "grunt": "~0.4.2",
     "bower": "*",
     "grunt-cli": "*",
@@ -33,6 +32,7 @@
     "grunt-contrib-watch": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-jade": "*",
+    "grunt-contrib-copy": "*",
     "grunt-ngmin": "*"
   }
 }
